@@ -7,6 +7,12 @@ verify_ssl = true
 
 [packages]
 gunicorn = "*"
+flask = "*"
+flask-sqlalchemy = "*"
+flask-login = "*"
+python-dotenv = "*"
+psycopg2 = "*"
+flask-bootstrap = "*"
 
 [requires]
 python_version = "3.8"
