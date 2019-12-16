@@ -13,6 +13,7 @@ flask-login = "*"
 python-dotenv = "*"
 psycopg2 = "*"
 flask-bootstrap = "*"
+flask-wtf = "*"
 
 [requires]
 python_version = "3.8"
