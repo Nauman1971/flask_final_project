@@ -7,7 +7,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False, unique=False)
     email = db.Column(db.String, nullable=False)
-    number = db.Column(db.Integer, nullable=False)
+    number = db.Column(db.String, nullable=False)
     roles = db.Column(db.String, nullable=False)
     # file = db.Column(db.LargeBinary)
     # file_name = db.Column(db.String(300))
