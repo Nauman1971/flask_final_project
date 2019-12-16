@@ -10,7 +10,7 @@ class SignupForm(FlaskForm):
     # password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=200)])
     number = IntegerField("Number")
     roles = SelectField("Roles", choices=[('Teacher', 'Teacher'), ('Student', 'Student')])
-    file = FileField(validators=[FileRequired()])
+    # file = FileField(validators=[FileRequired()])
 
 
 class LoginForm(FlaskForm):
