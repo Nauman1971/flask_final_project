@@ -76,11 +76,9 @@ def signup():
         email = form.email.data
         number = form.number.data
         roles = form.roles.data
-        file = form.file.data
-        file = file.read()
         existing_username = User.query.filter_by(username=username).first()
         if existing_username is None:
-            newUser = User(username=username, password=password, email=email, number=number, roles=roles, file=file)
+            newUser = User(username=username, password=password, email=email, number=number, roles=roles)
             db.session.add(newUser)
             db.session.commit()
             flash("User {} is created successfully".format(newUser.username), 'success')
@@ -92,8 +90,7 @@ def signup():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    send_f = send_file(current_user.file)
-    return render_template('/dashboard.html', name=current_user.username, send_f=send_f)
+    return render_template('/dashboard.html', name=current_user.username)
 
 
 @app.route('/logout')
