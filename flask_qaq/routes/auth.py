@@ -1,10 +1,9 @@
-from flask import render_template, redirect, url_for, request, flash, send_file
+from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, login_required, logout_user, current_user
 from flask import current_app as app
 from ..forms import SignupForm, LoginForm
 from ..models import db, User
-
-
+from werkzeug.security import generate_password_hash, check_password_hash
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -55,10 +54,9 @@ def update_profile():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
-    password = form.password.data
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user.password == password:
+        if check_password_hash(user.password, form.password.data):
             login_user(user)
             flash("You are logged in as {}".format(form.username.data), "success")
             return redirect(url_for('dashboard'))
@@ -71,14 +69,17 @@ def login():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
+        password = generate_password_hash(form.password.data, method='sha256')
         username = form.username.data
-        password = request.form["password"]
+        # password = request.form["password"]
         email = form.email.data
         number = form.number.data
         roles = form.roles.data
+        file = form.file.data
+        file = file.read()
         existing_username = User.query.filter_by(username=username).first()
         if existing_username is None:
-            newUser = User(username=username, password=password, email=email, number=number, roles=roles)
+            newUser = User(username=username, password=password, email=email, number=number, roles=roles, file=file)
             db.session.add(newUser)
             db.session.commit()
             flash("User {} is created successfully".format(newUser.username), 'success')

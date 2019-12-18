@@ -9,5 +9,5 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String, nullable=False)
     number = db.Column(db.String, nullable=False)
     roles = db.Column(db.String, nullable=False)
-    # file = db.Column(db.LargeBinary)
+    file = db.Column(db.LargeBinary)
     # file_name = db.Column(db.String(300))

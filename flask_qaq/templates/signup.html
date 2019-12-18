@@ -30,23 +30,24 @@
     {{ form.hidden_tag() }}
     {{ wtf.form_field(form.username) }}
     {{ wtf.form_field(form.number) }}
+    {{ wtf.form_field(form.password) }}
     {{ wtf.form_field(form.email) }}
     {{ wtf.form_field(form.roles) }}
-{#    {{ wtf.form_field(form.file) }}#}
+    {{ wtf.form_field(form.file) }}
 <input type="hidden" name="password" id="password"/>
     <button type="submit" id="generate" class="btn btn-primary">Signup</button>
     </form>
-    <script>
-  // make sure that this code comes after the DOM has been loaded
-  function setValues() {
-    // generate random Number
-    let randomNumber = Math.floor(100000 + Math.random() * 100000); // your logic to generate randomNumber
-    // nameField and passwordFields are available because they are defined in the outer scope
-    passwordField.value = randomNumber;
-  }
-
-  let passwordField = document.getElementById('password');
-  let generateButton = document.getElementById('generate');
-  generateButton.addEventListener('click', setValues);
-</script>
+{#    <script>#}
+{#  // make sure that this code comes after the DOM has been loaded#}
+{#  function setValues() {#}
+{#    // generate random Number#}
+{#    let randomNumber = Math.floor(100000 + Math.random() * 100000); // your logic to generate randomNumber#}
+{#    // nameField and passwordFields are available because they are defined in the outer scope#}
+{#    passwordField.value = randomNumber;#}
+{#  }#}
+{##}
+{#  let passwordField = document.getElementById('password');#}
+{#  let generateButton = document.getElementById('generate');#}
+{#  generateButton.addEventListener('click', setValues);#}
+{#</script>#}
 {% endblock %}
