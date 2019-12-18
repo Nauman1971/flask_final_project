@@ -20,7 +20,7 @@ def create_app(config_file='settings.py'):
 
     with app.app_context():
         from .routes import auth
-        # db.create_all()
+        db.create_all()
 
     app.cli.add_command(create_tables)
 
